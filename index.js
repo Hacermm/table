@@ -8,14 +8,16 @@ const people = [
     
 ];
 
+
+
 let idCounter = 1;  
 let index = 0;      
-let rowCount = 0;   
-const maxRows = 5;  
+let rowCount = 0;  
+const maxRows = 6; 
 
 function addRow() {
     if (rowCount >= maxRows) {
-        clearInterval(intervalId); // 5 sətrdən sonra intervalları dayandırır
+        clearInterval(intervalId);
         return;
     }
 
@@ -25,7 +27,6 @@ function addRow() {
  
     const row = document.createElement('tr');
 
-   
     const idCell = document.createElement('td');
     idCell.textContent = idCounter;
     row.appendChild(idCell);
@@ -38,12 +39,12 @@ function addRow() {
     soyadCell.textContent = person.soyad;
     row.appendChild(soyadCell);
 
-
     tableBody.appendChild(row);
 
+   
     idCounter++;
-    index++;      
-    rowCount++;  
+    index = (index + 1) % people.length; 
+    rowCount++;
 }
 
 const intervalId = setInterval(addRow, 2000);
